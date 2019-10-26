@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Google Poly</title>
+  <meta name="description" content="Google Poly">
+  <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+  <script
+    src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+
+  <script src="https://cdn.rawgit.com/archilogic-com/aframe-gblock/6498b71d/dist/gblock.js"></script>
+</head>
+
+<body>
+  <a-scene>
+    <a-assets>
+      <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg" crossorigin="anonymous">
+      <img id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" crossorigin="anonymous">
+      <audio id="ambience" src="snd/piano.wav" preload="auto"></audio>
+      <a-mixin id="teleport" teleport-controls="type: parabolic; cameraRig: #cameraRig; defaultPlaneSize: 1000;">
+      </a-mixin>
+    </a-assets>
+
+    <a-entity gblock="https://poly.google.com/view/avv3aZS16Ax?key=AIzaSyAme4LOfZvGseulohNjPXMUcio0tb-vZws"
+      scale="4 4 4" position="0 0 3.89768" rotation="">
+    <a-entity sound="src: #ambience; loop: true; autoplay:true;"></a-entity>
+    </a-entity>
+
+
+      <a-entity gblock="https://poly.google.com/view/4FVdh2A95hI?key=AIzaSyAme4LOfZvGseulohNjPXMUcio0tb-vZws"
+        scale="2.88358 2.88358 2.88358" position="2.05188 0.47981 0.89178"
+        rotation="0.3351803101515316 -1.5733421054292405 24.03328767455751"></a-entity>
+
+    <a-entity light="type: point; intensity: 2; distance: 50; decay: 2" position="-1.06152 3 -3"></a-entity>
+    <a-entity light="type: ambient; intensity: .5; color: #CCC"></a-entity>
+
+    <!-- Primitives. -->
+
+    <!-- Background sky. -->
+    <a-sky height="2048" radius="30" src="#skyTexture" theta-length="90" width="2048"></a-sky>
+
+    <!-- Ground. -->
+    <a-circle src="#groundTexture" rotation="-90 0 0" radius="32"></a-circle>
+
+    <a-entity id="cameraRig" position="0 .7 0">
+      <a-entity camera wasd-controls look-controls></a-entity>
+      <a-entity id="rightHand" mixin="teleport" laser-controls="hand: right" oculus-go-controls="hand: right">
+      </a-entity>
+    </a-entity>
+
+
+  </a-scene>
+</body>
+
+</html>
